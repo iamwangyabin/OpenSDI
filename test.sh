@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export HF_HOME=/data/jwang/yb/cache
-
 base_dir="./output_dir"
 mkdir -p ${base_dir}
 

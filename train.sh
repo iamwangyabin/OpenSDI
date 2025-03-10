@@ -1,9 +1,5 @@
 #!/bin/bash
 
-
-export WANDB_API_KEY="a4d3a740e939973b02ac59fbd8ed0d6a151df34b"
-export HF_HOME=/data/jwang/yb/cache
-
 base_dir="./output_dir"
 mkdir -p ${base_dir}
 
