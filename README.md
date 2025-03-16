@@ -1,11 +1,54 @@
+<div align="center">
+    <img alt="LMM-R1 logo" src="./docs/logo.jpeg" style="height: 140px;" />
+</div>
+
 # OpenSDI: Spotting Diffusion-Generated Images in the Open World
-Official repository for our CVPR 2025 paper:
-OpenSDI: Spotting Diffusion-Generated Images in the Open World
+<div align="center">
 
-This paper identifies OpenSDI, a challenge for spotting diffusion-generated images in open-world settings. In response to this challenge, we define a new benchmark, the OpenSDI dataset (OpenSDID), which stands out from existing datasets due to its diverse use of large vision-language models that simulate open-world diffusion-based manipulations. Another outstanding feature of OpenSDID is its inclusion of both detection and localization tasks for images manipulated globally and locally by diffusion models. To address the OpenSDI challenge, we propose a Synergizing Pretrained Models (SPM) scheme to build up a mixture of foundation models. This approach exploits a collaboration mechanism with multiple pretrained foundation models to enhance generalization in the OpenSDI context, moving beyond traditional training by synergizing multiple pretrained models through prompting and attending strategies. Building on this scheme, we introduce MaskCLIP, an SPM-based model that aligns Contrastive Language-Image Pre-Training (CLIP) with Masked Autoencoder (MAE). Extensive evaluations on OpenSDID show that MaskCLIP significantly outperforms current state-of-the-art methods for the OpenSDI challenge, achieving remarkable relative improvements of 14.23% in IoU (14.11% in F1) and 2.05% in accuracy (2.38% in F1) compared to the second-best model in detection and localization tasks, respectively.
+[![🤗 HF Dataset](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/nebula/OpenSDI_train) [![🤗 HF Model](https://img.shields.io/badge/🤗-Model-blue)](https://huggingface.co/datasets/nebula/OpenSDI_train) [![📄 Paper](https://img.shields.io/badge/📄-Paper-green)](https://arxiv.org) [![🌐 Project Page](https://img.shields.io/badge/🌐-Project_Page-purple)](hhttps://github.com/iamwangyabin/OpenSDI)
+
+</div>
 
 
-# Dataset
+
+
+## Introduction
+
+Detecting diffusion-generated images in open-world settings (OpenSDI) poses significant challenges due to the diversity of generation techniques and the constant evolution of diffusion models. Existing benchmarks lack comprehensive coverage of real-world manipulation scenarios, especially those created by modern vision-language models. To address these limitations, we propose **MaskCLIP**, a novel framework built on our Synergizing Pretrained Models (SPM) scheme:
+
+1. **OpenSDI Dataset (OpenSDID)**: A comprehensive benchmark featuring both global and local diffusion-based manipulations, supporting detection and localization tasks
+2. **Synergizing Pretrained Models (SPM)**: A collaborative mechanism that leverages multiple foundation models through strategic prompting and attending strategies
+
+OpenSDID serves as a valuable open-source benchmark for the research community, with plans to continuously expand the dataset to keep pace with evolving diffusion technologies.
+
+
+![pipeline](./docs/spm.png)
+*MaskCLIP overview. 
+
+
+
+
+## Dataset specifications
+
+
+![Creation](./docs/dataset.png)<br>
+*How we created OpenSDID for local modification on real image content
+
+| Model | Training Set | | Test Set | | Total |
+| --- | --- | --- | --- | --- | --- |
+| | Real | Fake | Real | Fake | Images |
+| SD1.5 | 100K | 100K | 10K | 10K | 220K |
+| SD2.1 | - | - | 10K | 10K | 20K |
+| SDXL | - | - | 10K | 10K | 20K |
+| SD3 | - | - | 10K | 10K | 20K |
+| Flux.1 | - | - | 10K | 10K | 20K |
+| Total | 100K | 100K | 50K | 50K | 300K |
+
+![pipeline](./docs/samples.png)
+*some dataset samples
+
+
+## Dataset Download
 We have packaged the dataset into Hugging Face datasets for convenient distribution in the following link:
 
 https://huggingface.co/datasets/nebula/OpenSDI_train
@@ -14,7 +57,11 @@ https://huggingface.co/datasets/nebula/OpenSDI_test
 The original data (indiviual image files) will be uploaded to cloud storage later.
 
 
-# Installation
+For convenient dataset utilization, we recommend using [IMDLBenCo](https://github.com/scu-zjz/IMDLBenCo), which offers comprehensive methods and tools for handling this dataset effectively.
+
+
+## Quick Start
+### Installation
 ```
 conda create -n opensdi python=3.12 -y
 conda activate opensdi
@@ -22,17 +69,29 @@ pip install -r requirements.txt
 wget -P weights https://dl.fbaipublicfiles.com/mae/pretrain/mae_pretrain_vit_base.pth
 ```
 
-# Train
+### Train
 ```
 train.sh
 ```
 
-# Test
+### Test
 ```
 test.sh
 ```
 
 
+
+## Citation
+If you find OpenSDI useful for your research and applications, please cite using this BibTeX:
+
+```bib
+
+```
+
+
 # Acknowledgement
 
-IML-ViT
+
+## References & Acknowledgements
+We sincerely thank [IML-ViT](https://github.com/SunnyHaze/IML-ViT) and [IMDLBenCo](https://github.com/scu-zjz/IMDLBenCo) for their exploration and support. 
+

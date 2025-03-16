@@ -247,6 +247,7 @@ class SideAdapterNetwork(nn.Module):
 
     def forward(self, image: torch.Tensor, text_features: torch.Tensor, clip_features: List[torch.Tensor]):
         image_features = self.forward_features(image, clip_features)
+        # only select the fake cls token [:, 1, :]
         text_features = self.text_projection(text_features.expand(image_features.shape[0], -1, -1))[:, 1, :]
         return self.mask_decoder(text_features, image_features)
 
