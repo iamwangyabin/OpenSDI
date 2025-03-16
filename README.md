@@ -10,7 +10,8 @@
 </div>
 
 
-
+## News
+ - [2025/3/10] We release code and dataset!
 
 ## Introduction
 
@@ -47,6 +48,7 @@ OpenSDID serves as a valuable open-source benchmark for the research community, 
 ![pipeline](./docs/samples.png)
 *some dataset samples
 
+We distribute this dataset under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
 
 ## Dataset Download
 We have packaged the dataset into Hugging Face datasets for convenient distribution in the following link:
@@ -88,8 +90,6 @@ If you find OpenSDI useful for your research and applications, please cite using
 
 ```
 
-
-# Acknowledgement
 
 
 ## References & Acknowledgements
