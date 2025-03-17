@@ -24,7 +24,7 @@ OpenSDID serves as a valuable open-source benchmark for the research community, 
 
 
 ![pipeline](./docs/spm.png)
-*MaskCLIP overview. 
+<p align="center">MaskCLIP overview. </p>
 
 
 
@@ -35,6 +35,8 @@ OpenSDID serves as a valuable open-source benchmark for the research community, 
 ![Creation](./docs/dataset.png)<br>
 *How we created OpenSDID for local modification on real image content
 
+<div align="center">
+
 | Model | Training Set | | Test Set | | Total |
 | --- | --- | --- | --- | --- | --- |
 | | Real | Fake | Real | Fake | Images |
@@ -44,22 +46,30 @@ OpenSDID serves as a valuable open-source benchmark for the research community, 
 | SD3 | - | - | 10K | 10K | 20K |
 | Flux.1 | - | - | 10K | 10K | 20K |
 | Total | 100K | 100K | 50K | 50K | 300K |
+</div>
+<p align="center">Dataset overview. </p>
+
 
 ![pipeline](./docs/samples.png)
-*some dataset samples
+<p align="center">Samples. </p>
 
-We distribute this dataset under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
+
 
 ## Dataset Download
 We have packaged the dataset into Hugging Face datasets for convenient distribution in the following link:
 
 https://huggingface.co/datasets/nebula/OpenSDI_train
+
 https://huggingface.co/datasets/nebula/OpenSDI_test
+
+*We distribute this dataset under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
+This dataset is for academic use. While it has undergone ethical review by the University of Southampton, it is provided 'as is' without warranties. Users assume all risks and liabilities associated with its use; the providers accept no responsibility for any consequences arising from its use.*
 
 The original data (indiviual image files) will be uploaded to cloud storage later.
 
 
-For convenient dataset utilization, we recommend using [IMDLBenCo](https://github.com/scu-zjz/IMDLBenCo), which offers comprehensive methods and tools for handling this dataset effectively.
+For dataset utilization, we recommend using [IMDLBenCo](https://github.com/scu-zjz/IMDLBenCo), which offers many methods.
+And you can use our hf dataset to load the data.
 
 
 ## Quick Start
