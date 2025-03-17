@@ -63,6 +63,7 @@ https://huggingface.co/datasets/nebula/OpenSDI_train
 https://huggingface.co/datasets/nebula/OpenSDI_test
 
 *We distribute this dataset under the [CC BY-SA 4.0 license](https://creativecommons.org/licenses/by-sa/4.0/).
+Real images come from [megalith-10m](https://huggingface.co/datasets/madebyollin/megalith-10m). 
 This dataset is for academic use. While it has undergone ethical review by the University of Southampton, it is provided 'as is' without warranties. Users assume all risks and liabilities associated with its use; the providers accept no responsibility for any consequences arising from its use.*
 
 The original data (indiviual image files) will be uploaded to cloud storage later.
