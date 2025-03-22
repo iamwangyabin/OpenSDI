@@ -24,7 +24,7 @@ class LayerNorm(nn.Module):
         x = self.weight[:, None, None] * x + self.bias[:, None, None]
         return x
 
-
+# https://github.com/SunnyHaze/IML-ViT/blob/8aa67af93e40e4671e4ac5cc69ae5872210d7249/modules/window_attention_ViT.py
 class MaskDecoder(nn.Module):
     def __init__(self,
                  in_channels,
