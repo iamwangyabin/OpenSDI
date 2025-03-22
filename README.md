@@ -69,7 +69,7 @@ And you can use our hf dataset to load the data.
 
 **Benchmark and Leaderboard: Join the OpenSDI Evaluation!**
 
-We are establishing a public leaderboard to track the performance of different methods on the OpenSDID benchmark. We encourage researchers to evaluate their detection and localization models on OpenSDID and submit their results.
+We maintain a public leaderboard at [OpenSDI Leaderboard](https://iamwangyabin.github.io/OpenSDI/). We warmly welcome researchers to evaluate their detection and localization models using our OpenSDID dataset and submit their results to contribute to this growing benchmark.
 
 ## Quick Start with MaskCLIP
 To address the OpenSDI challenge, we introduce **MaskCLIP**, a novel method based on our **Synergizing Pretrained Models (SPM) framework**. MaskCLIP effectively combines the strengths of two powerful pre-trained models:
