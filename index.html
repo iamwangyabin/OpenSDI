@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenSDI: Spotting Diffusion-Generated Images in the Open World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        header {
+            background: #505050;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            padding-bottom: 10px;
+            font-size: 2em;
+        }
+
+        nav {
+            background: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        nav li {
+            display: inline;
+            padding: 0 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 20px;
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        section h2 {
+            color: #e8491d;
+        }
+
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .leaderboard-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .results-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .result-image {
+            width: 30%;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .result-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .result-image p {
+            padding: 10px;
+            text-align: center;
+            margin: 0;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Highlight best result */
+        .best-result {
+            font-weight: bold;
+            color: #e8491d;
+        }
+
+        /* Code block style (optional) */
+        pre code {
+            display: block;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto; /* Horizontal scroll if code is too long */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>OpenSDI: Spotting Diffusion-Generated Images in the Open World</h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#opensdid">OpenSDID Dataset</a></li>
+                <li><a href="#leaderboard">Leaderboard</a></li>
+                <li><a href="#results">Results Showcase</a></li>
+                <li><a href="#download">Download & Code</a></li>
+                <li><a href="#citation">Citation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <section id="opensdid">
+            <h2>OpenSDID Dataset</h2>
+            <p>
+                We introduce OpenSDID, a large-scale dataset specifically curated for the OpenSDI challenge. Our dataset design addresses the three core requirements essential for open-world spotting of AI-generated content: user diversity, model innovation, and manipulation scope.
+            </p>
+            <ul>
+                <li><strong>User Diversity:</strong> Simulates diverse user preferences and editing intentions by employing multiple large vision-language models (VLMs).</li>
+                <li><strong>Model Innovation:</strong> Includes a variety of state-of-the-art diffusion models (SD1.5, SD2.1, SDXL, SD3, Flux.1) to address the challenges posed by rapid model iteration.</li>
+                <li><strong>Manipulation Scope:</strong> The dataset covers both global image synthesis and precise local edits, simulating complex real-world image forgeries.</li>
+            </ul>
+            <p>
+                OpenSDID comprises 300,000 images, evenly distributed between real and fake samples, divided into training and testing sets.  Refer to the paper for more dataset details.
+            </p>
+             <!-- Optional: Add dataset example images if space allows -->
+        </section>
+
+
+        <section id="leaderboard">
+            <h2>Leaderboard</h2>
+
+            <h3>Pixel-level Localization Performance</h3>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>SD1.5 IoU</th>
+                        <th>SD1.5 F1</th>
+                        <th>SD2.1 IoU</th>
+                        <th>SD2.1 F1</th>
+                        <th>SDXL IoU</th>
+                        <th>SDXL F1</th>
+                        <th>SD3 IoU</th>
+                        <th>SD3 F1</th>
+                        <th>Flux.1 IoU</th>
+                        <th>Flux.1 F1</th>
+                        <th>AVG IoU</th>
+                        <th>AVG F1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MVSS-Net</td>
+                        <td>0.5785</td>
+                        <td>0.6533</td>
+                        <td>0.4490</td>
+                        <td>0.5176</td>
+                        <td>0.1467</td>
+                        <td>0.1851</td>
+                        <td>0.2692</td>
+                        <td>0.3271</td>
+                        <td>0.0479</td>
+                        <td>0.0636</td>
+                        <td>0.2983</td>
+                        <td>0.3493</td>
+                    </tr>
+                    <tr>
+                        <td>CAT-Net</td>
+                        <td>0.6636</td>
+                        <td>0.7480</td>
+                        <td>0.5458</td>
+                        <td>0.6232</td>
+                        <td>0.2550</td>
+                        <td>0.3074</td>
+                        <td>0.3555</td>
+                        <td>0.4207</td>
+                        <td>0.0497</td>
+                        <td>0.0658</td>
+                        <td>0.3739</td>
+                        <td>0.4330</td>
+                    </tr>
+                    <tr>
+                        <td>PSCC-Net</td>
+                        <td>0.5470</td>
+                        <td>0.6422</td>
+                        <td>0.3667</td>
+                        <td>0.4479</td>
+                        <td>0.1973</td>
+                        <td>0.2605</td>
+                        <td>0.2926</td>
+                        <td>0.3728</td>
+                        <td>0.0816</td>
+                        <td>0.1156</td>
+                        <td>0.2970</td>
+                        <td>0.3678</td>
+                    </tr>
+                    <tr>
+                        <td>ObjectFormer</td>
+                        <td>0.5119</td>
+                        <td>0.6568</td>
+                        <td>0.4739</td>
+                        <td>0.4144</td>
+                        <td>0.0741</td>
+                        <td>0.0984</td>
+                        <td>0.0941</td>
+                        <td>0.1258</td>
+                        <td>0.0529</td>
+                        <td>0.0731</td>
+                        <td>0.2414</td>
+                        <td>0.2737</td>
+                    </tr>
+                    <tr>
+                        <td>TruFor</td>
+                        <td>0.6342</td>
+                        <td>0.7100</td>
+                        <td>0.5467</td>
+                        <td>0.6188</td>
+                        <td>0.2655</td>
+                        <td>0.3185</td>
+                        <td>0.3229</td>
+                        <td>0.3852</td>
+                        <td>0.0760</td>
+                        <td>0.0970</td>
+                        <td>0.3691</td>
+                        <td>0.4259</td>
+                    </tr>
+                    <tr>
+                        <td>DeCLIP</td>
+                        <td>0.3718</td>
+                        <td>0.4344</td>
+                        <td>0.3569</td>
+                        <td>0.4187</td>
+                        <td>0.1459</td>
+                        <td>0.1822</td>
+                        <td>0.2734</td>
+                        <td>0.3344</td>
+                        <td>0.1121</td>
+                        <td>0.1429</td>
+                        <td>0.2520</td>
+                        <td>0.3025</td>
+                    </tr>
+                    <tr>
+                        <td>IML-ViT</td>
+                        <td>0.6651</td>
+                        <td>0.7362</td>
+                        <td>0.4479</td>
+                        <td>0.5063</td>
+                        <td>0.2149</td>
+                        <td>0.2597</td>
+                        <td>0.2363</td>
+                        <td>0.2835</td>
+                        <td>0.0611</td>
+                        <td>0.0791</td>
+                        <td>0.3251</td>
+                        <td>0.3730</td>
+                    </tr>
+                    <tr class="best-result">
+                        <td>MaskCLIP</td>
+                        <td>0.6712</td>
+                        <td>0.7563</td>
+                        <td>0.5550</td>
+                        <td>0.6289</td>
+                        <td>0.3098</td>
+                        <td>0.3700</td>
+                        <td>0.4375</td>
+                        <td>0.5121</td>
+                        <td>0.1622</td>
+                        <td>0.2034</td>
+                        <td>0.4271</td>
+                        <td>0.4941</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Image-level Detection Performance</h3>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>SD1.5 F1</th>
+                        <th>SD1.5 Acc</th>
+                        <th>SD2.1 F1</th>
+                        <th>SD2.1 Acc</th>
+                        <th>SDXL F1</th>
+                        <th>SDXL Acc</th>
+                        <th>SD3 F1</th>
+                        <th>SD3 Acc</th>
+                        <th>Flux.1 F1</th>
+                        <th>Flux.1 Acc</th>
+                        <th>AVG F1</th>
+                        <th>AVG Acc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CNNDet</td>
+                        <td>0.8460</td>
+                        <td>0.8504</td>
+                        <td>0.7156</td>
+                        <td>0.7594</td>
+                        <td>0.5970</td>
+                        <td>0.6872</td>
+                        <td>0.5627</td>
+                        <td>0.6708</td>
+                        <td>0.3572</td>
+                        <td>0.5757</td>
+                        <td>0.6157</td>
+                        <td>0.7087</td>
+                    </tr>
+                    <tr>
+                        <td>GramNet</td>
+                        <td>0.8051</td>
+                        <td>0.8035</td>
+                        <td>0.7401</td>
+                        <td>0.7666</td>
+                        <td>0.6528</td>
+                        <td>0.7076</td>
+                        <td>0.6435</td>
+                        <td>0.7029</td>
+                        <td>0.5200</td>
+                        <td>0.6337</td>
+                        <td>0.6723</td>
+                        <td>0.7229</td>
+                    </tr>
+                    <tr>
+                        <td>FreqNet</td>
+                        <td>0.7588</td>
+                        <td>0.7770</td>
+                        <td>0.6097</td>
+                        <td>0.6837</td>
+                        <td>0.5315</td>
+                        <td>0.6402</td>
+                        <td>0.5350</td>
+                        <td>0.6437</td>
+                        <td>0.3847</td>
+                        <td>0.5708</td>
+                        <td>0.5639</td>
+                        <td>0.6631</td>
+                    </tr>
+                    <tr>
+                        <td>NPR</td>
+                        <td>0.7941</td>
+                        <td>0.7928</td>
+                        <td>0.8167</td>
+                        <td>0.8184</td>
+                        <td>0.7212</td>
+                        <td>0.7428</td>
+                        <td>0.7343</td>
+                        <td>0.7547</td>
+                        <td>0.6762</td>
+                        <td>0.7136</td>
+                        <td>0.7485</td>
+                        <td>0.7645</td>
+                    </tr>
+                    <tr>
+                        <td>UniFD</td>
+                        <td>0.7745</td>
+                        <td>0.7760</td>
+                        <td>0.8062</td>
+                        <td>0.8192</td>
+                        <td>0.7074</td>
+                        <td>0.7483</td>
+                        <td>0.7109</td>
+                        <td>0.7517</td>
+                        <td>0.6110</td>
+                        <td>0.6906</td>
+                        <td>0.7220</td>
+                        <td>0.7572</td>
+                    </tr>
+                    <tr>
+                        <td>RINE</td>
+                        <td>0.9108</td>
+                        <td>0.9098</td>
+                        <td>0.8747</td>
+                        <td>0.8812</td>
+                        <td>0.7343</td>
+                        <td>0.7876</td>
+                        <td>0.7205</td>
+                        <td>0.7678</td>
+                        <td>0.5586</td>
+                        <td>0.6702</td>
+                        <td>0.7598</td>
+                        <td>0.8033</td>
+                    </tr>
+                    <tr>
+                        <td>MVSS-Net</td>
+                        <td>0.9347</td>
+                        <td>0.9365</td>
+                        <td>0.7927</td>
+                        <td>0.8233</td>
+                        <td>0.5985</td>
+                        <td>0.7042</td>
+                        <td>0.6280</td>
+                        <td>0.7213</td>
+                        <td>0.2759</td>
+                        <td>0.5678</td>
+                        <td>0.6460</td>
+                        <td>0.7506</td>
+                    </tr>
+                    <tr>
+                        <td>CAT-Net</td>
+                        <td>0.9615</td>
+                        <td>0.9615</td>
+                        <td>0.7932</td>
+                        <td>0.8246</td>
+                        <td>0.6476</td>
+                        <td>0.7334</td>
+                        <td>0.6526</td>
+                        <td>0.7361</td>
+                        <td>0.2266</td>
+                        <td>0.5526</td>
+                        <td>0.6563</td>
+                        <td>0.7616</td>
+                    </tr>
+                    <tr>
+                        <td>PSCC-Net</td>
+                        <td>0.9607</td>
+                        <td>0.9614</td>
+                        <td>0.7685</td>
+                        <td>0.8094</td>
+                        <td>0.5570</td>
+                        <td>0.6881</td>
+                        <td>0.5978</td>
+                        <td>0.7089</td>
+                        <td>0.5177</td>
+                        <td>0.6704</td>
+                        <td>0.6803</td>
+                        <td>0.7676</td>
+                    </tr>
+                    <tr>
+                        <td>ObjectFormer</td>
+                        <td>0.7172</td>
+                        <td>0.7522</td>
+                        <td>0.6679</td>
+                        <td>0.7255</td>
+                        <td>0.4919</td>
+                        <td>0.6292</td>
+                        <td>0.4832</td>
+                        <td>0.6254</td>
+                        <td>0.3792</td>
+                        <td>0.5805</td>
+                        <td>0.5479</td>
+                        <td>0.6626</td>
+                    </tr>
+                    <tr>
+                        <td>TruFor</td>
+                        <td>0.9012</td>
+                        <td>0.9773</td>
+                        <td>0.3593</td>
+                        <td>0.5562</td>
+                        <td>0.5804</td>
+                        <td>0.6641</td>
+                        <td>0.5973</td>
+                        <td>0.6751</td>
+                        <td>0.4912</td>
+                        <td>0.6162</td>
+                        <td>0.5859</td>
+                        <td>0.6978</td>
+                    </tr>
+                    <tr>
+                        <td>DeCLIP</td>
+                        <td>0.8068</td>
+                        <td>0.7831</td>
+                        <td>0.8402</td>
+                        <td>0.8277</td>
+                        <td>0.7069</td>
+                        <td>0.7055</td>
+                        <td>0.6993</td>
+                        <td>0.6840</td>
+                        <td>0.5177</td>
+                        <td>0.6561</td>
+                        <td>0.7142</td>
+                        <td>0.7313</td>
+                    </tr>
+                    <tr>
+                        <td>IML-ViT</td>
+                        <td>0.9447</td>
+                        <td>0.7573</td>
+                        <td>0.6970</td>
+                        <td>0.6119</td>
+                        <td>0.4098</td>
+                        <td>0.4995</td>
+                        <td>0.4469</td>
+                        <td>0.5125</td>
+                        <td>0.1820</td>
+                        <td>0.4362</td>
+                        <td>0.5361</td>
+                        <td>0.5635</td>
+                    </tr>
+                    <tr class="best-result">
+                        <td>MaskCLIP</td>
+                        <td>0.9264</td>
+                        <td>0.9272</td>
+                        <td>0.8871</td>
+                        <td>0.8945</td>
+                        <td>0.7802</td>
+                        <td>0.8122</td>
+                        <td>0.7307</td>
+                        <td>0.7801</td>
+                        <td>0.5649</td>
+                        <td>0.6850</td>
+                        <td>0.7779</td>
+                        <td>0.8198</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="results">
+            <h2>Results Showcase</h2>
+            <p>The following are qualitative result examples of MaskCLIP and other methods on the OpenSDID dataset. It showcases the detection and localization performance on images generated by different diffusion models.</p>
+            <div class="results-images" style="display: flex; flex-direction: column; align-items: center;">
+                <div class="result-image" style="width: 80%; margin-bottom: 30px;">
+                    <img src="docs/sd15.png" alt="SD1.5 Result Example" style="width: 100%;">
+                    <p>SD1.5 Result Example</p>
+                </div>
+                <div class="result-image" style="width: 80%; margin-bottom: 30px;">
+                    <img src="docs/sd2.png" alt="SDXL Result Example" style="width: 100%;">
+                    <p>SD2 Result Example</p>
+                </div>
+                <div class="result-image" style="width: 80%; margin-bottom: 30px;">
+                    <img src="docs/sdxl.png" alt="SDXL Result Example" style="width: 100%;">
+                    <p>SDXL Result Example</p>
+                </div>
+                <div class="result-image" style="width: 80%; margin-bottom: 30px;">
+                    <img src="docs/sd3.png" alt="SDXL Result Example" style="width: 100%;">
+                    <p>SD3 Result Example</p>
+                </div>
+                <div class="result-image" style="width: 80%; margin-bottom: 30px;">
+                    <img src="docs/flux.png" alt="Flux.1 Result Example" style="width: 100%;">
+                    <p>Flux.1 Result Example</p>
+                </div>
+                <!-- You can add more result images -->
+            </div>
+        </section>
+
+        <section id="download">
+            <h2>Download & Code</h2>
+            <p>The OpenSDID dataset and the code for MaskCLIP are open-sourced on GitHub:</p>
+            <p><a href="https://github.com/iamwangyabin/OpenSDI">https://github.com/iamwangyabin/OpenSDI</a></p>
+            <!-- Optional: Add dataset download links if applicable (consider other methods for large datasets) -->
+        </section>
+
+        <section id="citation">
+            <h2>Citation</h2>
+            <p>If you use the OpenSDID dataset or MaskCLIP model in your research, please cite our paper:</p>
+            <pre><code>
+@article{wang2024opensdi,
+  title={OpenSDI: Spotting Diffusion-Generated Images in the Open World},
+  author={Wang, Yabin and Huang, Zhiwu and Hong, Xiaopeng},
+  journal={arXiv preprint arXiv},
+  year={2024}
+}
+            </code></pre>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 OpenSDI Project Team. Created by Yabin Wang, Zhiwu Huang, and Xiaopeng Hong.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
