@@ -10,7 +10,7 @@
 </div>
 
 ## News
- - [2025/3/10] We release code and dataset!
+ - [2025/3/10] We release dataset and code!
 
 
 ## Introduce OpenSDI challenge
@@ -72,10 +72,10 @@ And you can use our hf dataset to load the data.
 We maintain a public leaderboard at [OpenSDI Leaderboard](https://iamwangyabin.github.io/OpenSDI/). We warmly welcome researchers to evaluate their detection and localization models using our OpenSDID dataset and submit their results to contribute to this growing benchmark.
 
 ## Quick Start with MaskCLIP
-To address the OpenSDI challenge, we introduce **MaskCLIP**, a novel method based on our **Synergizing Pretrained Models (SPM) framework**. MaskCLIP effectively combines the strengths of two powerful pre-trained models:
+To address the OpenSDI challenge, we introduce **MaskCLIP**, a novel method based on our **Synergizing Pretrained Models (SPM) framework**. MaskCLIP effectively enhances the generalization strengths of two powerful pre-trained models at image and pixel levels:
 
 * **CLIP (Contrastive Language-Image Pre-training):** Provides robust image-level semantic understanding, crucial for generalizable detection.
-* **MAE (Masked Autoencoder):** Offers fine-grained spatial representation learning, essential for accurate forgery localization.
+* **MAE (Masked Autoencoder):** Offers fine-grained spatial representation learning, essential for accurate forgery localization at pixel level.
 ![pipeline](./docs/spm.png)
 <p align="center">MaskCLIP overview. </p>
 
