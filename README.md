@@ -5,7 +5,7 @@
 # OpenSDI: Spotting Diffusion-Generated Images in the Open World
 <div align="center">
 
-[![🤗 HF Dataset](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/nebula/OpenSDI_train) [![🤗 HF Model](https://img.shields.io/badge/🤗-Model-blue)](https://huggingface.co/datasets/nebula/OpenSDI_train) [![📄 Paper](https://img.shields.io/badge/📄-Paper-green)](https://arxiv.org) [![🌐 Project Page](https://img.shields.io/badge/🌐-Project_Page-purple)](https://iamwangyabin.github.io/OpenSDI/)
+[![🤗 HF Dataset](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/nebula/OpenSDI_train) [![🤗 HF Model](https://img.shields.io/badge/🤗-Model-blue)](https://huggingface.co/datasets/nebula/OpenSDI_train) [![📄 Paper](https://img.shields.io/badge/📄-Paper-green)](https://arxiv.org/abs/2503.19653) [![🌐 Project Page](https://img.shields.io/badge/🌐-Project_Page-purple)](https://iamwangyabin.github.io/OpenSDI/)
 
 </div>
 
