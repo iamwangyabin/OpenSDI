@@ -103,14 +103,12 @@ test.sh
 If you find OpenSDI useful for your research and applications, please cite using this BibTeX:
 
 ```bib
-@article{wang2025opensdi,
-  title         = {OpenSDI: Spotting Diffusion-Generated Images in the Open World},
-  author        = {Wang, Yabin and Huang, Zhiwu and Hong, Xiaopeng},
-  year          = {2025},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.CV},
-  url           = {https://arxiv.org/abs/2503.19653},
-}
+@InProceedings{wang2025opensdi,
+    author={Wang, Yabin and Huang, Zhiwu and Hong, Xiaopeng},
+    title={OpenSDI: Spotting Diffusion-Generated Images in the Open World},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    year={2025}
+  }
 ```
 
 
