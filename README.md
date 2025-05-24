@@ -116,5 +116,5 @@ If you find OpenSDI useful for your research and applications, please cite using
 
 
 ## References & Acknowledgements
-We sincerely thank [IML-ViT](https://github.com/SunnyHaze/IML-ViT) and [IMDLBenCo](https://github.com/scu-zjz/IMDLBenCo) for their exploration and support. 
+We sincerely thank [MaPLe](https://github.com/muzairkhattak/multimodal-prompt-learning), [IML-ViT](https://github.com/SunnyHaze/IML-ViT) and [IMDLBenCo](https://github.com/scu-zjz/IMDLBenCo) for their exploration and support. 
 
