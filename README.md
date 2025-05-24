@@ -84,6 +84,8 @@ To address the OpenSDI challenge, we introduce **MaskCLIP**, a novel method base
 conda create -n opensdi python=3.12 -y
 conda activate opensdi
 pip install -r requirements.txt
+pip install torch torchvision torchaudio 
+pip install git+https://github.com/openai/CLIP.git
 wget -P weights https://dl.fbaipublicfiles.com/mae/pretrain/mae_pretrain_vit_base.pth
 ```
 
