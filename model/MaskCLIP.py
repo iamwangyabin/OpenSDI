@@ -108,10 +108,7 @@ class MaskCLIP(nn.Module):
         self.prompt_learner = PromptLearner(align_dim, settings['language_ctx'], settings['language_depth'],
                                             self.clip.dtype)
 
-        for param in self.cls_aggregator.parameters():
-            param.requires_grad = False
-        for param in self.prompt_learner.parameters():
-            param.requires_grad = False
+
 
         self.ce_criterion = nn.CrossEntropyLoss()
         self.bce_criterion = nn.BCELoss()
@@ -164,7 +161,7 @@ class MaskCLIP(nn.Module):
         ce_loss = self.ce_criterion(probs, label)
         pred_label = torch.argmax(probs, dim=1)
 
-        loss = ce_loss + bce_loss + edge_loss# + dice_loss
+        loss = ce_loss + bce_loss + edge_loss # + dice_loss
 
         output_dict = {
             "backward_loss": loss,
