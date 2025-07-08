@@ -119,7 +119,7 @@ class Trainer:
         dataset_test = HFDataset(
             self.args.test_data_path,
             self.args.test_split_name,
-            # pixel=True,
+            pixel=True,
             is_padding=self.args.if_padding,
             is_resizing=self.args.if_resizing,
             output_size=(self.args.image_size, self.args.image_size),
