@@ -5,7 +5,7 @@
 # OpenSDI: Spotting Diffusion-Generated Images in the Open World
 <div align="center">
 
-[![🤗 HF Dataset](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/nebula/OpenSDI_train) [![🤗 HF Model](https://img.shields.io/badge/🤗-Model-blue)](https://huggingface.co/datasets/nebula/OpenSDI_train) [![📄 Paper](https://img.shields.io/badge/📄-Paper-green)](https://arxiv.org/abs/2503.19653) [![🌐 Project Page](https://img.shields.io/badge/🌐-Project_Page-purple)](https://iamwangyabin.github.io/OpenSDI/)
+[![🤗 HF Dataset](https://img.shields.io/badge/🤗-Dataset-yellow)](https://huggingface.co/datasets/nebula/OpenSDI_train) [![🤗 HF Model](https://img.shields.io/badge/🤗-Model-blue)](https://huggingface.co/nebula/MaskCLIP-weights) [![📄 Paper](https://img.shields.io/badge/📄-Paper-green)](https://arxiv.org/abs/2503.19653) [![🌐 Project Page](https://img.shields.io/badge/🌐-Project_Page-purple)](https://iamwangyabin.github.io/OpenSDI/)
 
 </div>
 
@@ -95,6 +95,8 @@ train.sh
 ```
 
 ### Test
+Download the MaskCLIP model weights from [Hugging Face](https://huggingface.co/nebula/MaskCLIP-weights/tree/main), then set `--checkpoint_path` in `test.sh` to the downloaded `.pth` checkpoint.
+
 ```
 test.sh
 ```
@@ -117,4 +119,3 @@ If you find OpenSDI useful for your research and applications, please cite using
 
 ## References & Acknowledgements
 We sincerely thank [MaPLe](https://github.com/muzairkhattak/multimodal-prompt-learning), [IML-ViT](https://github.com/SunnyHaze/IML-ViT) and [IMDLBenCo](https://github.com/scu-zjz/IMDLBenCo) for their exploration and support. 
-
